@@ -7,7 +7,7 @@ from sklearn.metrics import classification_report, confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from model import ThaiTForClassification
+from model import PViTForClassification
 
 def set_seed(seed: int = 42):
     random.seed(seed)
@@ -20,7 +20,7 @@ def set_seed(seed: int = 42):
 set_seed(42)
 
 # -------------------- Config & Patchs -------------------- #
-exp_dir = "/content/drive/MyDrive/experiments/ViT/ViT-B/16"
+exp_dir = "/content/drive/MyDrive/experiments/PViT/PViT-B/16"
 checkpoint_path = os.path.join(exp_dir, "model_best.pt")
 config_path = os.path.join(exp_dir, "config.json")
 out_dir = os.path.join(exp_dir, "eval_outputs")
@@ -32,7 +32,7 @@ with open(config_path, "r") as f:
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 # -------------------- Load model -------------------- #
-model = ThaiTForClassification(config).to(device)
+model = PViTForClassification(config).to(device)
 
 ckpt = torch.load(checkpoint_path, map_location="cpu")
 state = ckpt
