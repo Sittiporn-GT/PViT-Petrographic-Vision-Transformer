@@ -132,7 +132,7 @@ class Trainer:
 
 def main(exp_name, batch_size, epochs, lr, save_model_every, device):
     trainloader, valloader, testloader, _ = prepare_data(batch_size=batch_size)
-    model = ThaiTForClassification(config)
+    model = PViTForClassification(config)
     optimizer = optim.AdamW(model.parameters(), lr=lr, weight_decay=1e-3)
     loss_fn = nn.CrossEntropyLoss()
     trainer = Trainer(model, optimizer, loss_fn, exp_name, device=device)
