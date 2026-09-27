@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import torch
 from torch.nn import functional as F
-from thait import ThaiTForClassfication
+from thait import PViTForClassfication
 
 # ----------------------------------------------------------------------------------------------------------------- #
 def visualize_custom_images(train_dir):
@@ -70,7 +70,7 @@ def visualize_attention_all(model, test_dir, output_dir, device="cuda"):
         print(f"Saved: {save_path}")
 
 # # Experiment and training hyperparameters
-exp_name = '/content/drive/MyDrive/experiments/ThaiT/B/16'
+exp_name = '/content/drive/MyDrive/experiments/PViT/B/16'
 #----------------------------------------------------------------------------------------------------------------#
 # [6]: Plot Training Results
 # After training, load the experiment metrics and plot the losses and accuracies.
