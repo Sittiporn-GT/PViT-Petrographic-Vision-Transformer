@@ -232,7 +232,7 @@ evaluated on the held-out test split.
 | PViT-Base | 32 × 32 | Scratch | 95.03 % | [download](https://doi.org/10.5281/zenodo.23047595) |
 | PViT-Large | 16 × 16 | Scratch | 97.52 % | [download](https://doi.org/10.5281/zenodo.23047658) |
 | PViT-Large | 32 × 32 | Scratch | 91.71 % | [download](https://doi.org/10.5281/zenodo.23047719) |
-| PViT-Huge | 16 × 16 | Scratch |  % | [download]() |
+| PViT-Huge | 16 × 16 | Scratch | 96.07 % | [download](https://doi.org/10.5281/zenodo.23049295) |
 | PViT-Huge | 32 × 32 | Scratch | 93.17 % | [download](https://doi.org/10.5281/zenodo.23047784) |
 
 Place the downloaded `.pt` files in `checkpoints/` before running evaluation.
