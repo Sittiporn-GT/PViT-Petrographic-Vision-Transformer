@@ -5,7 +5,9 @@
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-1.7+-ee4c2c.svg)](https://pytorch.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![DOI](https://img.shields.io/badge/Dataset-10.5281%2Fzenodo.18613714-blue)](https://doi.org/10.5281/zenodo.18613714)
+[![Accuracy](https://img.shields.io/badge/Accuracy-98.34%25-success.svg)](#results)
+[![Weights](https://img.shields.io/badge/Weights-Zenodo-1682D4.svg)](https://doi.org/10.5281/zenodo.23047502)
+[![Dataset](https://img.shields.io/badge/Dataset-Zenodo-1682D4.svg)](https://doi.org/10.5281/zenodo.18613714)
 
 **Petrographic Vision Transformer (PViT)** is a family of Vision Transformer models that
 automatically classify **15 plutonic rock types** from petrographic thin-section images,
@@ -139,7 +141,7 @@ Train PViT from scratch:
 
 ```bash
 python train.py \
-    --exp-name pvit_base \
+    --exp-name pvit_base_p16 \
     --data-dir data/dataset \
     --model pvit_base \
     --img-size 512 \
@@ -147,8 +149,13 @@ python train.py \
     --batch-size 16 \
     --epochs 20 \
     --optimizer adamw \
+    --lr 1e-4 \
     --weight-decay 0.001 \
     --seed 42
+```
+
+To reproduce the 32 × 32 variants, set `--patch-size 32` and keep all other settings
+unchanged.
 ```
 
 Logs, loss curves, and validation accuracy are written to `checkpoints/<exp-name>/`.
@@ -239,18 +246,18 @@ Place the downloaded `.pt` files in `checkpoints/` before running evaluation.
 
 ### Comparison with baselines
 
-| Model | Accuracy |
-|---|---|
-| **PViT-Base (ours)** | **98.34 %** |
-| PViT-Large (ours) | 97.52 % |
-| PViT-Huge (ours) | 96.07 % |
-| ViT-Base | 97.72 % |
-| ViT-Large | 96.38 % |
-| ViT-Huge | 96.07 % |
-| DaViT-Base | 96.27 % |
-| DaViT-Large | 98.34 % |
-| EfficientNetV2-M | 98.14 % |
-| EfficientNetV2-L | 98.34 % |
+| Model | Patch size | Accuracy | vs. PViT |
+|---|---|---|---|
+| **PViT-Base (ours)** | 16 × 16 | **98.34 %** | — |
+| ViT-Base | 16 × 16 | 97.72 % | −0.62 |
+| DaViT-Base | — | 96.27 % | −2.07 |
+| DaViT-Large | — | 98.34 % | ±0.00 |
+| EfficientNetV2-M | — | 98.14 % | −0.20 |
+| EfficientNetV2-L | — | 98.34 % | ±0.00 |
+| PViT-Large (ours) | 16 × 16 | 97.52 % | — |
+| ViT-Large | 16 × 16 | 96.38 % | +1.14 |
+| PViT-Huge (ours) | 16 × 16 | 96.07 % | — |
+| ViT-Huge | 16 × 16 | 96.07 % | ±0.00 |
 
 PViT-Base matches the best-performing baselines (DaViT-Large, EfficientNetV2-L) while being
 substantially smaller, and converges in roughly **12 epochs** compared with **~20 epochs**
