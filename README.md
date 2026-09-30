@@ -31,27 +31,13 @@ Two changes are introduced over the standard ViT encoder:
   used in the position-wise feed-forward network (FFN). It is cheaper to evaluate than the
   exact erf formulation while preserving the smooth gradient flow needed for the subtle
   optical textures in thin sections.
-- **Fused QKV projection** — the Query, Key and Value projections in multi-head
+- **Fused QKV projection** — the Query, Key, and Value projections in multi-head
   self-attention are merged into a single joint linear transformation, cutting memory
   traffic and improving throughput per step.
 
 The repository provides code for **training**, **evaluation**, and **attention
 visualization** on plane-polarized light (PPL) and cross-polarized light (XPL)
 thin-section images.
-
----
-
-## Table of contents
-
-- [Installation](#installation)
-- [Dataset](#dataset)
-- [Training](#training)
-- [Evaluation](#evaluation)
-- [Attention visualization](#attention-visualization)
-- [Results](#results)
-- [Reproducibility](#reproducibility)
-- [Citation](#citation)
-- [License](#license)
 
 ---
 
@@ -165,7 +151,7 @@ python train.py \
     --seed 42
 ```
 
-Logs, loss curves and validation accuracy are written to `checkpoints/<exp-name>/`.
+Logs, loss curves, and validation accuracy are written to `checkpoints/<exp-name>/`.
 The best-performing checkpoint is saved as `model_best.pt`.
 
 PViT typically reaches its peak validation accuracy at around **epoch 12**; training beyond
@@ -242,9 +228,12 @@ evaluated on the held-out test split.
 
 | Model | Patch size | Training | Accuracy | Weights |
 |---|---|---|---|---|
-| **PViT-Base** | 16 × 16 | Scratch | **98.34 %** | [download](https://github.com/Sittiporn-GT/Thai_Transformer/releases/download/v1.0.0/thait-base.pt) |
-| PViT-Large | 16 × 16 | Scratch | 97.52 % | [download](https://github.com/Sittiporn-GT/Thai_Transformer/releases/download/v1.0.0/thait-large.pt) |
-| PViT-Huge | 16 × 16 | Scratch | 96.07 % | coming soon |
+| **PViT-Base** | 16 × 16 | Scratch | **98.34 %** | [download](https://doi.org/10.5281/zenodo.23047502) |
+| PViT-Base | 32 × 32 | Scratch | 95.03 % | [download](https://doi.org/10.5281/zenodo.23047595) |
+| PViT-Large | 16 × 16 | Scratch | 97.52 % | [download](https://doi.org/10.5281/zenodo.23047658) |
+| PViT-Large | 32 × 32 | Scratch | 91.71 % | [download](https://doi.org/10.5281/zenodo.23047719) |
+| PViT-Huge | 16 × 16 | Scratch |  % | [download]() |
+| PViT-Huge | 32 × 32 | Scratch | 93.17 % | [download](https://doi.org/10.5281/zenodo.23047784) |
 
 Place the downloaded `.pt` files in `checkpoints/` before running evaluation.
 
